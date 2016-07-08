@@ -1,0 +1,111 @@
+<h3>Hello <%= @user.alias %>!</h3>
+
+<a href="/new">Add a Book</a>
+
+<h3>Currently Reading</h3>
+<table border="1">
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Author</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @current.each do |current| %>
+     <tr>
+      <td><%= current.book.title %></td>
+      <td><%= current.book.author %></td>
+      <td>
+      <form action='/update/<%= current.id %>' method='post'>
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>"> 
+        <input type='hidden' name='_method' value='patch'> 
+        <input type="hidden" name="status" value="finished">
+  		<button type="submit">Finished</button>
+  	  </form></td>
+  	  <td>
+      <form action="/delete/<%= current.id %>" method="post">
+      	  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      	  <input type="hidden" name="_method" value="delete">
+      	  <button type="submit">Dropped</button>
+      </form></td>
+    </tr>
+  <% end %>  
+  </tbody>
+</table>
+
+
+<h3>Want to Read</h3>
+<table border="1">
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Author</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @want.each do |want| %>
+     <tr>
+      <td><%= want.book.title %></td>
+      <td><%= want.book.author %></td>
+      <td>
+      <form action='/update/<%= want.id %>' method='post'>
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>"> 
+        <input type='hidden' name='_method' value='patch'> 
+        <input type="hidden" name="status" value="current">
+  		<button type="submit">Now Reading</button>
+  	  </form></td>
+  	  <td>
+      <form action="/delete/<%= want.id %>" method="post">
+      	  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      	  <input type="hidden" name="_method" value="delete">
+      	  <button type="submit">Dropped</button>
+      </form></td>
+    </tr>
+  <% end %>  
+  </tbody>
+</table>
+
+<h3>Finished Reading</h3>
+<table border="1">
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Author</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @finished.each do |finished| %>
+     <tr>
+      <td><%= finished.book.title %></td>
+      <td><%= finished.book.author %></td>
+      <td>
+      <form action='/update/<%= finished.id %>' method='post'>
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>"> 
+        <input type='hidden' name='_method' value='patch'> 
+        <input type="hidden" name="status" value="want">
+  		<button type="submit">Want to Read Again</button>
+  	  </form></td>
+  	  <td>
+  	  	<form action="/update/<%= finished.id %>" method="post">
+  	  	  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  	  	  <input type="hidden" name="_method" value="patch">
+  	  	  <input type="hidden" name="status" value="current">
+  	  	  <button type="submit">Reading Again</button>
+  	  	</form></td>
+  	  <td>
+      <form action="/delete/<%= finished.id %>" method="post">
+      	  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      	  <input type="hidden" name="_method" value="delete">
+      	  <button type="submit">Delete</button>
+      </form></td>
+    </tr>
+  <% end %>  
+  </tbody>
+</table>
