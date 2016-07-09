@@ -1,28 +1,9 @@
-== README
+Created just to practice using Postgresql and ROR.
+App lets user register with some basic validations.
+User then is able to add books with title and author, to one of three categories: want to read, currently reading, already read.
+User is able to move around these books by clicking buttons.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+No CSS/HTML.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Also deployed (for practice).
+52.38.46.169
